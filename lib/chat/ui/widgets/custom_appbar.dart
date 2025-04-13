@@ -13,8 +13,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      titleSpacing: 0,
-      leadingWidth: 0,
       leading: IconButton(
         onPressed: () {},
         icon: Icon(
@@ -44,7 +42,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: ColorsManager.lightGray,
+              color: ColorsManager.lightGrey,
               size: 16.h,
             )
           ],

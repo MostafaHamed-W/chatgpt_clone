@@ -1,3 +1,4 @@
+import 'package:chatgpt_clone/chat/ui/widgets/chat_widget.dart';
 import 'package:chatgpt_clone/chat/ui/widgets/custom_appbar.dart';
 import 'package:chatgpt_clone/chat/ui/widgets/rounded_icon_button.dart';
 import 'package:chatgpt_clone/chat/ui/widgets/rounded_text_icon_button.dart';
@@ -21,15 +22,11 @@ final bottomInset = MediaQuery.of(context).viewPadding.bottom;
         bottom: false,
         // maintainBottomViewPadding: false,
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             // Chat body
             const Expanded(
-              child: Center(
-                child: Text(
-                  'Chat messages go here...',
-                  style: TextStyle(color: ColorsManager.lightGrey),
-                ),
-              ),
+              child: ChatWidget(),
             ),
 
             Container(
@@ -106,5 +103,7 @@ final bottomInset = MediaQuery.of(context).viewPadding.bottom;
     );
   }
 }
+
+
 
 

@@ -32,6 +32,11 @@ class TextStyles {
     color: Colors.white,
   );
 
+  static TextStyle font14WhiteRegular = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: Colors.white,
+  );
   static TextStyle font12WhiteRegular = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,

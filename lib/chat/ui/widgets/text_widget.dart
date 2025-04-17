@@ -11,43 +11,46 @@ class TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isSender = chatIndex == 0;
-    return Row(
-      mainAxisAlignment: isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Flexible(
-          child: Container(
-            padding: isSender ? EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h) : EdgeInsets.zero,
-            decoration: BoxDecoration(
-              color: isSender ? ColorsManager.backgroundCard : Colors.transparent,
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  message,
-                  style: TextStyles.font14WhiteRegular,
-                ),
-                isSender
-                    ? const SizedBox.shrink()
-                    : Padding(
-                        padding: EdgeInsets.only(top: 10.h),
-                        child: Row(
-                          children: [
-                            _MessageIconButton(icon: Icons.copy_all_rounded, onTap: () {}),
-                            _MessageIconButton(icon: Icons.volume_up, onTap: () {}),
-                            _MessageIconButton(icon: Icons.thumb_up, onTap: () {}),
-                            _MessageIconButton(icon: Icons.thumb_down, onTap: () {}),
-                            _MessageIconButton(icon: Icons.cached, onTap: () {}),
-                          ],
-                        ),
-                      )
-              ],
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.h),
+      child: Row(
+        mainAxisAlignment: isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+            child: Container(
+              padding: isSender ? EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h) : EdgeInsets.zero,
+              decoration: BoxDecoration(
+                color: isSender ? ColorsManager.backgroundCard : Colors.transparent,
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    message,
+                    style: TextStyles.font14WhiteRegular,
+                  ),
+                  isSender
+                      ? const SizedBox.shrink()
+                      : Padding(
+                          padding: EdgeInsets.only(top: 10.h),
+                          child: Row(
+                            children: [
+                              _MessageIconButton(icon: Icons.copy_all_rounded, onTap: () {}),
+                              _MessageIconButton(icon: Icons.volume_up, onTap: () {}),
+                              _MessageIconButton(icon: Icons.thumb_up, onTap: () {}),
+                              _MessageIconButton(icon: Icons.thumb_down, onTap: () {}),
+                              _MessageIconButton(icon: Icons.cached, onTap: () {}),
+                            ],
+                          ),
+                        )
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

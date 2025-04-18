@@ -1,5 +1,7 @@
+import 'dart:developer';
+import 'package:chatgpt_clone/chat/data/constants.dart';
+import 'package:chatgpt_clone/chat/ui/widgets/chat_model_selector.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
-import 'package:chatgpt_clone/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,6 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      scrolledUnderElevation: 0,
       leading: IconButton(
         onPressed: () {},
         icon: Icon(
@@ -30,24 +33,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         )
       ],
       backgroundColor: ColorsManager.scaffoldBackground,
-      title: InkWell(
-        onTap: () {},
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'ChatGPT',
-              style: TextStyles.font18WhiteSemiBold,
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: ColorsManager.lightGrey,
-              size: 16.h,
-            )
-          ],
-        ),
+      title: ChatModelSelector(
+        onChanged: (model) {
+          log('Selcetd model: $model');
+        },
+        initialValue: chatModels[0],
       ),
     );
   }
 }
+

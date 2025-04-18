@@ -1,4 +1,4 @@
-final chatMessages = [
+const chatMessages = [
   {
     "msg": "Hello who are you?",
     "chatIndex": 0,
@@ -24,4 +24,17 @@ final chatMessages = [
     "msg": "You're welcome! Let me know if you have any other questions or if there's anything else I can help you with.",
     "chatIndex": 1,
   },
+];
+
+const List<String> chatModels = [
+  'ChatGPT-3.5',
+  'ChatGPT-4',
+  'ChatGPT-4.5',
+  'ChatGPT-Tes1',
+  'ChatGPT-Test2',
+  'ChatGPT-Test3',
+  'ChatGPT-Test4',
+  'ChatGPT-Test5',
+  'ChatGPT-Test6',
+  'ChatGPT-Test7',
 ];

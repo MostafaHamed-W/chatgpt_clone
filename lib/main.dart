@@ -3,6 +3,7 @@ import 'package:chatgpt_clone/core/helpers/brightness_helper.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  setWhiteStatusBarIcons();
+  WidgetsFlutterBinding.ensureInitialized();
+  setThemingConfigurations();
   runApp(const ChatGPT());
 }

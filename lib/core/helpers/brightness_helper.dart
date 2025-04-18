@@ -1,14 +1,17 @@
+import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:flutter/services.dart';
 
-Future<void> setWhiteStatusBarIcons() async {
-  await setStatusBarIconBrightness();
+Future<void> setThemingConfigurations() async {
+  await setCustomSystemUIOverlayStyle();
 }
 
-Future<void> setStatusBarIconBrightness() async {
+Future<void> setCustomSystemUIOverlayStyle() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: ColorsManager.backgroundDark,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
 }

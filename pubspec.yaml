@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter_screenutil: ^5.9.0
+  flutter_keyboard_visibility: ^6.0.0
 
   flutter:
     sdk: flutter

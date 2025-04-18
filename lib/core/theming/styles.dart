@@ -20,6 +20,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.lighterGrey,
   );
+  static TextStyle font16WhiteSemiBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: Colors.white,
+  );
   static TextStyle font16LighterGreyRegular = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,

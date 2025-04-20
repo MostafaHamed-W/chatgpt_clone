@@ -1,6 +1,9 @@
-import 'package:chatgpt_clone/chat/ui/widgets/rounded_icon_button.dart';
-import 'package:chatgpt_clone/chat/ui/widgets/rounded_text_icon_button.dart';
+import 'package:chatgpt_clone/core/di/dependency_injection.dart';
+import 'package:chatgpt_clone/features/chat/data/repos/chat_repo.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_icon_button.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_text_icon_button.dart';
 import 'package:chatgpt_clone/core/helpers/spacing.dart';
+import 'package:chatgpt_clone/core/networking/api_service.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +77,10 @@ class ChatTextField extends StatelessWidget {
                   icon: Icons.arrow_upward,
                   backgroundColor: Colors.white,
                   iconColor: Colors.black,
-                  onTap: () {},
+                  onTap: () {
+                    ChatRepo chatRepo = ChatRepo(getIt.get<ApiService>());
+                    chatRepo.postCompletion();
+                  },
                 ),
               ],
             )

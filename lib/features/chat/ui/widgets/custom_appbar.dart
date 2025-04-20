@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:chatgpt_clone/chat/data/models/chat_model/chat_model.dart';
-import 'package:chatgpt_clone/chat/ui/widgets/chat_model_selector.dart';
+import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/chat_model_selector.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,6 +1,6 @@
-import 'package:chatgpt_clone/chat/ui/widgets/chat_textfield.dart';
-import 'package:chatgpt_clone/chat/ui/widgets/chat_widget.dart';
-import 'package:chatgpt_clone/chat/ui/widgets/custom_appbar.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/chat_textfield.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/chat_widget.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -38,7 +38,6 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-
       appBar: const CustomAppBar(),
       body: SafeArea(
         bottom: false,

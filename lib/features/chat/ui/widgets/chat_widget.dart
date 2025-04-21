@@ -24,7 +24,8 @@ class ChatWidget extends StatelessWidget {
             itemBuilder: (context, index) {
               return TextWidget(
                 message: chatMessages[index]['msg'].toString(),
-                chatIndex: int.parse(chatMessages[index]['chatIndex'].toString()),
+                chatIndex:
+                    int.parse(chatMessages[index]['chatIndex'].toString()),
               );
             },
           ),

@@ -14,14 +14,19 @@ class TextWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
       child: Row(
-        mainAxisAlignment: isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment:
+            isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
             child: Container(
-              padding: isSender ? EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h) : EdgeInsets.zero,
+              padding: isSender
+                  ? EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h)
+                  : EdgeInsets.zero,
               decoration: BoxDecoration(
-                color: isSender ? ColorsManager.backgroundCard : Colors.transparent,
+                color: isSender
+                    ? ColorsManager.backgroundCard
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(20.r),
               ),
               child: Column(
@@ -37,11 +42,16 @@ class TextWidget extends StatelessWidget {
                           padding: EdgeInsets.only(top: 10.h),
                           child: Row(
                             children: [
-                              _MessageIconButton(icon: Icons.copy_all_rounded, onTap: () {}),
-                              _MessageIconButton(icon: Icons.volume_up, onTap: () {}),
-                              _MessageIconButton(icon: Icons.thumb_up, onTap: () {}),
-                              _MessageIconButton(icon: Icons.thumb_down, onTap: () {}),
-                              _MessageIconButton(icon: Icons.cached, onTap: () {}),
+                              _MessageIconButton(
+                                  icon: Icons.copy_all_rounded, onTap: () {}),
+                              _MessageIconButton(
+                                  icon: Icons.volume_up, onTap: () {}),
+                              _MessageIconButton(
+                                  icon: Icons.thumb_up, onTap: () {}),
+                              _MessageIconButton(
+                                  icon: Icons.thumb_down, onTap: () {}),
+                              _MessageIconButton(
+                                  icon: Icons.cached, onTap: () {}),
                             ],
                           ),
                         )

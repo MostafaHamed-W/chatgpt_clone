@@ -12,5 +12,6 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
 
   // Chat Repo
-  getIt.registerLazySingleton<ChatRepo>(() => ChatRepo(getIt.get<ApiService>()));
+  getIt
+      .registerLazySingleton<ChatRepo>(() => ChatRepo(getIt.get<ApiService>()));
 }

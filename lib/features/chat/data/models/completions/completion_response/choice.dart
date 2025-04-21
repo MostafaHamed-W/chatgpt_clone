@@ -17,11 +17,16 @@ class Choice {
   });
 
   factory Choice.fromJson(Map<String, dynamic> json) => Choice(
-        contentFilterResults: json['content_filter_results'] == null ? null : ContentFilterResults.fromJson(json['content_filter_results'] as Map<String, dynamic>),
+        contentFilterResults: json['content_filter_results'] == null
+            ? null
+            : ContentFilterResults.fromJson(
+                json['content_filter_results'] as Map<String, dynamic>),
         finishReason: json['finish_reason'] as String?,
         index: json['index'] as int?,
         logprobs: json['logprobs'] as dynamic,
-        message: json['message'] == null ? null : Message.fromJson(json['message'] as Map<String, dynamic>),
+        message: json['message'] == null
+            ? null
+            : Message.fromJson(json['message'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {

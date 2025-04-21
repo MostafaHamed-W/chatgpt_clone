@@ -19,7 +19,8 @@ class ChatTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
-      final bottomPadding = isKeyboardVisible ? 10.h : MediaQuery.of(context).viewPadding.bottom;
+      final bottomPadding =
+          isKeyboardVisible ? 10.h : MediaQuery.of(context).viewPadding.bottom;
       return Container(
         padding: EdgeInsets.fromLTRB(15.w, 10.h, 15.w, bottomPadding),
         decoration: BoxDecoration(
@@ -41,7 +42,8 @@ class ChatTextField extends StatelessWidget {
                       contentPadding: EdgeInsets.zero,
                       hintText: 'Message ChatGPT',
                       hintStyle: TextStyles.font16LighterGreyRegular,
-                      border: const OutlineInputBorder(borderSide: BorderSide.none),
+                      border:
+                          const OutlineInputBorder(borderSide: BorderSide.none),
                     ),
                   ),
                 ),
@@ -82,7 +84,8 @@ class ChatTextField extends StatelessWidget {
                   iconColor: Colors.black,
                   onTap: () async {
                     ChatRepo chatRepo = ChatRepo(getIt.get<ApiService>());
-                    final response = await chatRepo.postCompletion(chatModel: chatModel.value);
+                    final response = await chatRepo.postCompletion(
+                        chatModel: chatModel.value);
                     response.fold(
                       (failure) {
                         print(failure);

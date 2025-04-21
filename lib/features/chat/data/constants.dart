@@ -7,7 +7,8 @@ const chatMessages = [
     "chatIndex": 0,
   },
   {
-    "msg": "Hello, I am ChatGPT, a large language model developed by OpenAI. I am here to assist you with any information or questions you may have. How can I help you today?",
+    "msg":
+        "Hello, I am ChatGPT, a large language model developed by OpenAI. I am here to assist you with any information or questions you may have. How can I help you today?",
     "chatIndex": 1,
   },
   {
@@ -24,7 +25,8 @@ const chatMessages = [
     "chatIndex": 0,
   },
   {
-    "msg": "You're welcome! Let me know if you have any other questions or if there's anything else I can help you with.",
+    "msg":
+        "You're welcome! Let me know if you have any other questions or if there's anything else I can help you with.",
     "chatIndex": 1,
   },
 ];

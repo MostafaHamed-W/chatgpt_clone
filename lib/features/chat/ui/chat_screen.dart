@@ -20,7 +20,8 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     _scrollController.addListener(() {
       if (!_scrollController.hasClients) return;
-      final isNotAtBottom = _scrollController.position.pixels < _scrollController.position.maxScrollExtent;
+      final isNotAtBottom = _scrollController.position.pixels <
+          _scrollController.position.maxScrollExtent;
       if (isNotAtBottom != showScrollDownButton) {
         setState(() {
           showScrollDownButton = isNotAtBottom;

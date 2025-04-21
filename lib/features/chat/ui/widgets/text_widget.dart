@@ -1,11 +1,15 @@
+import 'package:chatgpt_clone/core/helpers/extensions.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/message_action_buttons.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/typing_spin_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+
 class TextWidget extends StatelessWidget {
   const TextWidget({super.key, required this.message, required this.chatIndex});
-  final String message;
+  final String? message;
   final int chatIndex;
 
   @override
@@ -14,78 +18,40 @@ class TextWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
       child: Row(
-        mainAxisAlignment:
-            isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
             child: Container(
-              padding: isSender
-                  ? EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h)
-                  : EdgeInsets.zero,
+              padding: isSender ? EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h) : EdgeInsets.zero,
               decoration: BoxDecoration(
-                color: isSender
-                    ? ColorsManager.backgroundCard
-                    : Colors.transparent,
+                color: isSender ? ColorsManager.backgroundCard : Colors.transparent,
                 borderRadius: BorderRadius.circular(20.r),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    message,
-                    style: TextStyles.font14WhiteRegular,
-                  ),
-                  isSender
-                      ? const SizedBox.shrink()
-                      : Padding(
-                          padding: EdgeInsets.only(top: 10.h),
-                          child: Row(
-                            children: [
-                              _MessageIconButton(
-                                  icon: Icons.copy_all_rounded, onTap: () {}),
-                              _MessageIconButton(
-                                  icon: Icons.volume_up, onTap: () {}),
-                              _MessageIconButton(
-                                  icon: Icons.thumb_up, onTap: () {}),
-                              _MessageIconButton(
-                                  icon: Icons.thumb_down, onTap: () {}),
-                              _MessageIconButton(
-                                  icon: Icons.cached, onTap: () {}),
-                            ],
-                          ),
-                        )
+                  if (isSender && message != null) ...[
+                    Text(
+                      message!,
+                      style: TextStyles.font14WhiteRegular,
+                    ),
+                  ] else ...[
+                    if (message.isNullOrEmpty())
+                      const TypingSpinKit()
+                    else ...[
+                      Text(
+                        message!,
+                        style: TextStyles.font14WhiteRegular,
+                      ),
+                      const MessageActionButtons()
+                    ]
+                  ]
                 ],
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _MessageIconButton extends StatelessWidget {
-  const _MessageIconButton({
-    this.onTap,
-    required this.icon,
-  });
-
-  final void Function()? onTap;
-  final IconData? icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 10.w),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(8.r),
-        onTap: onTap,
-        child: Icon(
-          icon,
-          size: 18.w,
-          color: ColorsManager.lighterGrey,
-        ),
       ),
     );
   }

@@ -29,6 +29,14 @@ const chatMessages = [
         "You're welcome! Let me know if you have any other questions or if there's anything else I can help you with.",
     "chatIndex": 1,
   },
+  {
+    "msg": "Test loading effect?",
+    "chatIndex": 0,
+  },
+  {
+    "msg": "",
+    "chatIndex": 1,
+  },
 ];
 
 List<ChatModel> chatModels = [

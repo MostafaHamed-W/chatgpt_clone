@@ -1,6 +1,11 @@
-import 'package:chatgpt_clone/chat/ui/widgets/rounded_icon_button.dart';
-import 'package:chatgpt_clone/chat/ui/widgets/rounded_text_icon_button.dart';
+import 'package:chatgpt_clone/core/di/dependency_injection.dart';
+import 'package:chatgpt_clone/features/chat/data/constants.dart';
+import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
+import 'package:chatgpt_clone/features/chat/data/repos/chat_repo.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_icon_button.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_text_icon_button.dart';
 import 'package:chatgpt_clone/core/helpers/spacing.dart';
+import 'package:chatgpt_clone/core/networking/api_service.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +13,14 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatTextField extends StatelessWidget {
-  const ChatTextField({super.key});
+  const ChatTextField({super.key, required this.chatModel});
+  final ValueNotifier<ChatModel> chatModel;
 
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
-      final bottomPadding = isKeyboardVisible ? 10.h : MediaQuery.of(context).viewPadding.bottom;
+      final bottomPadding =
+          isKeyboardVisible ? 10.h : MediaQuery.of(context).viewPadding.bottom;
       return Container(
         padding: EdgeInsets.fromLTRB(15.w, 10.h, 15.w, bottomPadding),
         decoration: BoxDecoration(
@@ -35,7 +42,8 @@ class ChatTextField extends StatelessWidget {
                       contentPadding: EdgeInsets.zero,
                       hintText: 'Message ChatGPT',
                       hintStyle: TextStyles.font16LighterGreyRegular,
-                      border: const OutlineInputBorder(borderSide: BorderSide.none),
+                      border:
+                          const OutlineInputBorder(borderSide: BorderSide.none),
                     ),
                   ),
                 ),
@@ -74,7 +82,20 @@ class ChatTextField extends StatelessWidget {
                   icon: Icons.arrow_upward,
                   backgroundColor: Colors.white,
                   iconColor: Colors.black,
-                  onTap: () {},
+                  onTap: () async {
+                    ChatRepo chatRepo = ChatRepo(getIt.get<ApiService>());
+                    final response = await chatRepo.postCompletion(
+                        chatModel: chatModel.value);
+                    response.fold(
+                      (failure) {
+                        print(failure);
+                      },
+                      (completion) {
+                        print('Done');
+                        print(completion.choices?[0].message?.content ?? '');
+                      },
+                    );
+                  },
                 ),
               ],
             )

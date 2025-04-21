@@ -56,11 +56,15 @@ class _RoundedTextIconButtonState extends State<RoundedTextIconButton> {
         duration: const Duration(milliseconds: 250),
         height: widget.size.h,
         decoration: BoxDecoration(
-          color: isSelected ? ColorsManager.selectionBackground : ColorsManager.backgroundDark,
+          color: isSelected
+              ? ColorsManager.selectionBackground
+              : ColorsManager.backgroundDark,
           borderRadius: BorderRadius.circular(18.r),
           border: widget.borderWidth > 0
               ? Border.all(
-                  color: isSelected ? ColorsManager.selectionBorder : ColorsManager.lightGrey,
+                  color: isSelected
+                      ? ColorsManager.selectionBorder
+                      : ColorsManager.lightGrey,
                   width: widget.borderWidth,
                 )
               : null,
@@ -78,7 +82,9 @@ class _RoundedTextIconButtonState extends State<RoundedTextIconButton> {
               horizentalWidth(5),
               Text(
                 widget.text,
-                style: isSelected ? TextStyles.font12LightBlueRegular : TextStyles.font12WhiteRegular,
+                style: isSelected
+                    ? TextStyles.font12LightBlueRegular
+                    : TextStyles.font12WhiteRegular,
               ),
             ],
           ),

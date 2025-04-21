@@ -1,4 +1,4 @@
-import 'package:chatgpt_clone/chat/ui/chat_screen.dart';
+import 'package:chatgpt_clone/features/chat/ui/chat_screen.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

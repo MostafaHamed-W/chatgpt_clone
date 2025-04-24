@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:chatgpt_clone/core/di/dependency_injection.dart';
-import 'package:chatgpt_clone/features/chat/data/constants.dart';
 import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
 import 'package:chatgpt_clone/features/chat/data/repos/chat_repo.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_icon_button.dart';
@@ -88,11 +89,11 @@ class ChatTextField extends StatelessWidget {
                         chatModel: chatModel.value);
                     response.fold(
                       (failure) {
-                        print(failure);
+                        log(failure.toString());
                       },
                       (completion) {
-                        print('Done');
-                        print(completion.choices?[0].message?.content ?? '');
+                        log('Done');
+                        log(completion.choices?[0].message?.content ?? '');
                       },
                     );
                   },

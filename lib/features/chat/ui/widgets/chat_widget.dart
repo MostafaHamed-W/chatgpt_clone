@@ -16,7 +16,7 @@ class ChatWidget extends StatelessWidget {
     return Expanded(
       child: KeyboardDismissOnTap(
         child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: 15.w),
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 18.w),
           child: ListView.builder(
             padding: EdgeInsets.zero,
             controller: scrollController,

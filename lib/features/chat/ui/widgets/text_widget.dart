@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatgpt_clone/core/helpers/extensions.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
@@ -40,9 +41,15 @@ class TextWidget extends StatelessWidget {
                     if (message.isNullOrEmpty())
                       const TypingSpinKit()
                     else ...[
-                      Text(
-                        message!,
+                      DefaultTextStyle(
+
                         style: TextStyles.font14WhiteRegular,
+                        child: AnimatedTextKit(
+                          totalRepeatCount: 1,
+                          animatedTexts: [
+                            TypewriterAnimatedText(message!, cursor: ''),
+                          ],
+                        ),
                       ),
                       const MessageActionButtons()
                     ]

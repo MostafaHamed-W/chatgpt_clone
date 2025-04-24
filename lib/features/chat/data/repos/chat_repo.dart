@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:chatgpt_clone/core/error/failure.dart';
 import 'package:chatgpt_clone/core/networking/api_service.dart';
+import 'package:chatgpt_clone/features/chat/data/datasources/local_chat_models_data_source.dart';
 import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
 import 'package:chatgpt_clone/features/chat/data/models/completions/completion_request/completion_request.dart';
 import 'package:chatgpt_clone/features/chat/data/models/completions/completion_request/message.dart';
@@ -10,7 +11,19 @@ import 'package:dio/dio.dart';
 
 class ChatRepo {
   final ApiService _apiService;
-  ChatRepo(this._apiService);
+  final LocalChatModelsDataSource _localChatModelsDataSource;
+  ChatRepo(this._apiService, this._localChatModelsDataSource);
+
+  fetchChatModels() => _localChatModelsDataSource.getChatModels();
+
+  Future<Either<Failure, List<ChatModel>>> getChatModels() async {
+    try {
+      var chatModels = _localChatModelsDataSource.getChatModels();
+      return Right(chatModels);
+    } catch (e) {
+      return Left(ServerFailure('Error loading models, Please try again later'));
+    }
+  }
 
   Future<Either<Failure, CompletionResponse>> postCompletion({required ChatModel chatModel}) async {
     try {

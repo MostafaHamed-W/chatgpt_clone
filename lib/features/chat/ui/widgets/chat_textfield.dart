@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:chatgpt_clone/core/di/dependency_injection.dart';
+import 'package:chatgpt_clone/features/chat/data/datasources/local_chat_models_data_source.dart';
 import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
 import 'package:chatgpt_clone/features/chat/data/repos/chat_repo.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_icon_button.dart';
@@ -14,8 +15,8 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatTextField extends StatelessWidget {
-  const ChatTextField({super.key, required this.chatModel});
-  final ValueNotifier<ChatModel> chatModel;
+  const ChatTextField({super.key, required this.chatModelNotifier});
+  final ValueNotifier<ChatModel> chatModelNotifier;
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +85,9 @@ class ChatTextField extends StatelessWidget {
                   backgroundColor: Colors.white,
                   iconColor: Colors.black,
                   onTap: () async {
-                    ChatRepo chatRepo = ChatRepo(getIt.get<ApiService>());
+                    ChatRepo chatRepo = ChatRepo(getIt.get<ApiService>(), getIt.get<LocalChatModelsDataSource>());
                     final response = await chatRepo.postCompletion(
-                        chatModel: chatModel.value);
+                        chatModel: chatModelNotifier.value);
                     response.fold(
                       (failure) {
                         log(failure.toString());

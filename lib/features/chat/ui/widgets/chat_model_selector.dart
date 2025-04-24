@@ -1,15 +1,14 @@
-import 'package:chatgpt_clone/features/chat/data/constants.dart';
+import 'package:chatgpt_clone/core/di/dependency_injection.dart';
 import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
+import 'package:chatgpt_clone/features/chat/logic/viewmodels/chat_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatModelSelector extends StatefulWidget {
-  const ChatModelSelector(
-      {super.key, required this.onChanged, required this.initialValue});
+  const ChatModelSelector({super.key, required this.onChanged});
   final void Function(ChatModel) onChanged;
-  final ChatModel initialValue;
 
   @override
   State<ChatModelSelector> createState() => _ChatModelSelectorState();
@@ -17,10 +16,12 @@ class ChatModelSelector extends StatefulWidget {
 
 class _ChatModelSelectorState extends State<ChatModelSelector> {
   late ChatModel selectedModel;
+  late List<ChatModel> chatModels;
 
   @override
   void initState() {
-    selectedModel = widget.initialValue;
+    chatModels = getIt.get<ChatViewModel>().chatModels;
+    selectedModel = chatModels[0];
     super.initState();
   }
 
@@ -34,8 +35,7 @@ class _ChatModelSelectorState extends State<ChatModelSelector> {
         dropdownColor: ColorsManager.backgroundDark,
         menuMaxHeight: 250.h,
         borderRadius: BorderRadius.circular(10.r),
-        icon: Icon(Icons.arrow_forward_ios,
-            color: ColorsManager.lightGrey, size: 16.h),
+        icon: Icon(Icons.arrow_forward_ios, color: ColorsManager.lightGrey, size: 16.h),
         value: selectedModel,
         items: chatModels.map(
           (model) {

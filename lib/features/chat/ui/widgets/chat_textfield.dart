@@ -86,7 +86,7 @@ class ChatTextField extends StatelessWidget {
                   iconColor: Colors.black,
                   onTap: () async {
                     ChatRepo chatRepo = getIt.get<ChatRepo>();
-                    final selectedModel = context.read<ChatProvider>().selectedModel!;
+                    final selectedModel = context.read<ChatModelProvider>().selectedModel!;
                     final response = await chatRepo.postCompletion(
                       chatModel: selectedModel,
                     );

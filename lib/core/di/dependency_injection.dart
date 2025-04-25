@@ -20,5 +20,5 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ChatRepo>(() => ChatRepo(getIt.get<ApiService>(), getIt.get<LocalChatModelsDataSource>()));
 
   // ChatViewModel
-  getIt.registerLazySingleton<ChatProvider>(() => ChatProvider(getIt.get<ChatRepo>()));
+  getIt.registerLazySingleton<ChatModelProvider>(() => ChatModelProvider(getIt.get<ChatRepo>()));
 }

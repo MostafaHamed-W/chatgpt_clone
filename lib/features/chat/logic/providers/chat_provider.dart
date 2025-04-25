@@ -2,9 +2,9 @@ import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.da
 import 'package:chatgpt_clone/features/chat/data/repos/chat_repo.dart';
 import 'package:flutter/material.dart';
 
-class ChatProvider extends ChangeNotifier {
+class ChatModelProvider extends ChangeNotifier {
   final ChatRepo _chatRepo;
-  ChatProvider(this._chatRepo) {
+  ChatModelProvider(this._chatRepo) {
     fetchChatModels();
     _selectedModel = _chatModels.isNotEmpty ? chatModels.first : null;
   }

@@ -25,7 +25,7 @@ class ChatGPT extends StatelessWidget {
         home: MultiProvider(
           providers: [
             ChangeNotifierProvider(
-              create: (context) => ChatProvider(getIt.get<ChatRepo>()),
+              create: (context) => ChatModelProvider(getIt.get<ChatRepo>()),
             )
           ],
           child: const ChatScreen(),

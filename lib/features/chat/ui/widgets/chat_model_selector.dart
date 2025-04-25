@@ -12,7 +12,7 @@ class ChatModelSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chatProvider = context.watch<ChatProvider>();
+    final chatProvider = context.watch<ChatModelProvider>();
     return DropdownButtonHideUnderline(
       child: DropdownButton<ChatModel?>(
         alignment: Alignment.center,

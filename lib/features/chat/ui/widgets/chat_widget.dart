@@ -1,4 +1,4 @@
-import 'package:chatgpt_clone/features/chat/data/constants.dart';
+import 'package:chatgpt_clone/core/constants/chat_messages.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';

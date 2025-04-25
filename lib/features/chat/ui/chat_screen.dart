@@ -1,5 +1,3 @@
-import 'package:chatgpt_clone/features/chat/data/constants.dart';
-import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/chat_textfield.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/chat_widget.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/custom_appbar.dart';
@@ -38,18 +36,16 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final chatModel = ValueNotifier<ChatModel>(chatModels[0]);
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: CustomAppBar(chatModel: chatModel),
+      appBar: const CustomAppBar(),
       body: SafeArea(
         bottom: false,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             ChatWidget(scrollController: _scrollController),
-            ChatTextField(chatModel: chatModel),
+            const ChatTextField(),
           ],
         ),
       ),

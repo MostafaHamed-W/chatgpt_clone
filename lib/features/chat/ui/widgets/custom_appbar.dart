@@ -1,18 +1,12 @@
-import 'dart:developer';
-import 'package:chatgpt_clone/features/chat/data/constants.dart';
-import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/chat_model_selector.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({
-    super.key,
-    required this.chatModel,
-  });
+  const CustomAppBar({super.key});
 
-  final ValueNotifier<ChatModel> chatModel;
+
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -38,13 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         )
       ],
       backgroundColor: ColorsManager.scaffoldBackground,
-      title: ChatModelSelector(
-        onChanged: (model) {
-          chatModel.value = model;
-          log('Selcetd model: ${chatModel.value.id}');
-        },
-        initialValue: chatModels[0],
-      ),
+      title: const ChatModelSelector(),
     );
   }
 }

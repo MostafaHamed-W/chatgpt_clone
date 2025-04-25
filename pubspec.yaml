@@ -43,6 +43,7 @@ dependencies:
   json_annotation: any
   freezed_annotation: any
   flutter_spinkit: ^5.2.1
+  provider: ^6.1.4
 
 
   # The following adds the Cupertino Icons font to your application.

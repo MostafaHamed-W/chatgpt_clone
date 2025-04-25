@@ -2,7 +2,7 @@ import 'package:chatgpt_clone/core/networking/api_paths.dart';
 import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
 
 class LocalChatModelsDataSource {
-  List<ChatModel> getChatModels() => [
+  List<ChatModel> fetchLocalDataModels() => const [
         ChatModel(
           id: 'openai/gpt-4.1',
           name: 'ChatGPT-4.1',

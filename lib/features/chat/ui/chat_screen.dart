@@ -1,6 +1,3 @@
-import 'package:chatgpt_clone/core/di/dependency_injection.dart';
-import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
-import 'package:chatgpt_clone/features/chat/logic/viewmodels/chat_viewmodel.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/chat_textfield.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/chat_widget.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/custom_appbar.dart';
@@ -15,14 +12,10 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final ScrollController _scrollController = ScrollController();
-  late List<ChatModel> chatModels;
   bool showScrollDownButton = false;
-
-
 
   @override
   void initState() {
-    chatModels = getIt.get<ChatViewModel>().chatModels;
     _scrollController.addListener(() {
       if (!_scrollController.hasClients) return;
       final isNotAtBottom = _scrollController.position.pixels < _scrollController.position.maxScrollExtent;
@@ -43,18 +36,16 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final chatModelNotifier = ValueNotifier<ChatModel>(chatModels[0]);
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: CustomAppBar(chatModelNotifier: chatModelNotifier),
+      appBar: const CustomAppBar(),
       body: SafeArea(
         bottom: false,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             ChatWidget(scrollController: _scrollController),
-            ChatTextField(chatModelNotifier: chatModelNotifier),
+            const ChatTextField(),
           ],
         ),
       ),

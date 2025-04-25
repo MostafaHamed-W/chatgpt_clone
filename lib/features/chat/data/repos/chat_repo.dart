@@ -14,19 +14,18 @@ class ChatRepo {
   final LocalChatModelsDataSource _localChatModelsDataSource;
   ChatRepo(this._apiService, this._localChatModelsDataSource);
 
-  fetchChatModels() => _localChatModelsDataSource.getChatModels();
-
-  Future<Either<Failure, List<ChatModel>>> getChatModels() async {
+  List<ChatModel> fetchLocalChatModels() {
     try {
-      var chatModels = _localChatModelsDataSource.getChatModels();
-      return Right(chatModels);
+      var chatModels = _localChatModelsDataSource.fetchLocalDataModels();
+      return chatModels;
     } catch (e) {
-      return Left(ServerFailure('Error loading models, Please try again later'));
+      throw Exception('Error loading models, Please try again later');
     }
   }
 
   Future<Either<Failure, CompletionResponse>> postCompletion({required ChatModel chatModel}) async {
     try {
+      log(chatModel.id);
       var data = await _apiService.post(
         endpoint: chatModel.endpoint,
         data: CompletionRequest(

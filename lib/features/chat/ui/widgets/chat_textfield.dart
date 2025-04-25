@@ -1,22 +1,22 @@
 import 'dart:developer';
-
 import 'package:chatgpt_clone/core/di/dependency_injection.dart';
-import 'package:chatgpt_clone/features/chat/data/datasources/local_chat_models_data_source.dart';
-import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
 import 'package:chatgpt_clone/features/chat/data/repos/chat_repo.dart';
+import 'package:chatgpt_clone/features/chat/logic/providers/chat_provider.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_icon_button.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_text_icon_button.dart';
 import 'package:chatgpt_clone/core/helpers/spacing.dart';
-import 'package:chatgpt_clone/core/networking/api_service.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class ChatTextField extends StatelessWidget {
-  const ChatTextField({super.key, required this.chatModelNotifier});
-  final ValueNotifier<ChatModel> chatModelNotifier;
+  const ChatTextField({
+    super.key,
+  });
+
 
   @override
   Widget build(BuildContext context) {
@@ -85,9 +85,11 @@ class ChatTextField extends StatelessWidget {
                   backgroundColor: Colors.white,
                   iconColor: Colors.black,
                   onTap: () async {
-                    ChatRepo chatRepo = ChatRepo(getIt.get<ApiService>(), getIt.get<LocalChatModelsDataSource>());
+                    ChatRepo chatRepo = getIt.get<ChatRepo>();
+                    final selectedModel = context.read<ChatProvider>().selectedModel!;
                     final response = await chatRepo.postCompletion(
-                        chatModel: chatModelNotifier.value);
+                      chatModel: selectedModel,
+                    );
                     response.fold(
                       (failure) {
                         log(failure.toString());

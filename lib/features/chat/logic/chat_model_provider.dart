@@ -1,10 +1,10 @@
 import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
-import 'package:chatgpt_clone/features/chat/data/repos/chat_repo.dart';
+import 'package:chatgpt_clone/features/chat/data/repos/chat_models_repo.dart';
 import 'package:flutter/material.dart';
 
 class ChatModelProvider extends ChangeNotifier {
-  final ChatRepo _chatRepo;
-  ChatModelProvider(this._chatRepo) {
+  final ChatModelsRepo _chatModelRepo;
+  ChatModelProvider(this._chatModelRepo) {
     fetchChatModels();
     _selectedModel = _chatModels.isNotEmpty ? chatModels.first : null;
   }
@@ -15,7 +15,7 @@ class ChatModelProvider extends ChangeNotifier {
   ChatModel? get selectedModel => _selectedModel;
 
   void fetchChatModels() {
-    _chatModels = _chatRepo.fetchLocalChatModels();
+    _chatModels = _chatModelRepo.fetchLocalChatModels();
     notifyListeners();
   }
 

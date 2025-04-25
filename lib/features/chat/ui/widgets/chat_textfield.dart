@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:chatgpt_clone/core/di/dependency_injection.dart';
 import 'package:chatgpt_clone/features/chat/data/repos/chat_repo.dart';
-import 'package:chatgpt_clone/features/chat/logic/providers/chat_provider.dart';
+import 'package:chatgpt_clone/features/chat/logic/chat_model_provider.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_icon_button.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_text_icon_button.dart';
 import 'package:chatgpt_clone/core/helpers/spacing.dart';
@@ -87,7 +87,7 @@ class ChatTextField extends StatelessWidget {
                   onTap: () async {
                     ChatRepo chatRepo = getIt.get<ChatRepo>();
                     final selectedModel = context.read<ChatModelProvider>().selectedModel!;
-                    final response = await chatRepo.postCompletion(
+                    final response = await chatRepo.sendMessage(
                       chatModel: selectedModel,
                     );
                     response.fold(

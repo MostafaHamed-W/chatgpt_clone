@@ -53,4 +53,6 @@ class CompletionResponse {
         'system_fingerprint': systemFingerprint,
         'usage': usage?.toJson(),
       };
+
+
 }

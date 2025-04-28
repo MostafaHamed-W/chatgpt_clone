@@ -1,8 +1,9 @@
-import 'package:chatgpt_clone/core/constants/chat_messages.dart';
+import 'package:chatgpt_clone/features/chat/logic/chat_provider.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class ChatWidget extends StatelessWidget {
   const ChatWidget({
@@ -13,6 +14,7 @@ class ChatWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final chatNotifier = context.watch<ChatProvider>();
     return Expanded(
       child: KeyboardDismissOnTap(
         child: Padding(
@@ -20,12 +22,13 @@ class ChatWidget extends StatelessWidget {
           child: ListView.builder(
             padding: EdgeInsets.zero,
             controller: scrollController,
-            itemCount: chatMessages.length,
+            itemCount: chatNotifier.chatMessages.length,
             itemBuilder: (context, index) {
+              bool isLastItem = index == chatNotifier.chatMessages.length - 1;
               return TextWidget(
-                message: chatMessages[index]['msg'].toString(),
-                chatIndex:
-                    int.parse(chatMessages[index]['chatIndex'].toString()),
+                message: chatNotifier.chatMessages[index].message,
+                chatIndex: chatNotifier.chatMessages[index].index,
+                isLastItem: isLastItem,
               );
             },
           ),

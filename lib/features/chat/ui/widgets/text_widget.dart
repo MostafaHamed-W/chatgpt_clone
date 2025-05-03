@@ -1,23 +1,18 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
-import 'package:chatgpt_clone/features/chat/logic/chat_provider.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/message_action_buttons.dart';
-import 'package:chatgpt_clone/features/chat/ui/widgets/typing_spin_kit.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 class TextWidget extends StatelessWidget {
-  const TextWidget({super.key, required this.message, required this.chatIndex, required this.isLastItem});
+  const TextWidget({super.key, required this.message, required this.chatIndex});
   final String? message;
   final int chatIndex;
-  final bool isLastItem;
 
   @override
   Widget build(BuildContext context) {
-    final chatNotifier = context.watch<ChatProvider>();
+
     bool isSender = chatIndex == 0;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -45,6 +40,9 @@ class TextWidget extends StatelessWidget {
                       style: TextStyles.font14WhiteRegular,
                       child: AnimatedTextKit(
                         totalRepeatCount: 1,
+                        isRepeatingAnimation: false,
+                        repeatForever: false,
+                        stopPauseOnTap: true,
                         animatedTexts: [
                           TypewriterAnimatedText(message!, cursor: ''),
                         ],
@@ -52,7 +50,6 @@ class TextWidget extends StatelessWidget {
                     ),
                     if (message!.isNotEmpty) const MessageActionButtons(),
                   ],
-                  if (chatNotifier.isLoading) const TypingSpinKit()
                 ],
               ),
             ),

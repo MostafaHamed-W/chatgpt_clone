@@ -30,6 +30,10 @@ class ChatProvider extends ChangeNotifier {
       chatModel: chatModel,
       chatMessage: chatMessage,
     );
+    
+    // Simulate backend loading time on testing 
+    // await Future.delayed(const Duration(seconds: 3));
+    
     result.fold(
       (failure) {
         log(failure.errMessage);

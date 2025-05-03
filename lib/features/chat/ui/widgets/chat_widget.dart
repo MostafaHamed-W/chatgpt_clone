@@ -1,5 +1,6 @@
 import 'package:chatgpt_clone/features/chat/logic/chat_provider.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/text_widget.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/typing_spin_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +16,9 @@ class ChatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final chatNotifier = context.watch<ChatProvider>();
+    final chatListLenght = chatNotifier.chatMessages.length;
+    final isLoading = chatNotifier.isLoading;
+
     return Expanded(
       child: KeyboardDismissOnTap(
         child: Padding(
@@ -22,14 +26,14 @@ class ChatWidget extends StatelessWidget {
           child: ListView.builder(
             padding: EdgeInsets.zero,
             controller: scrollController,
-            itemCount: chatNotifier.chatMessages.length,
+            itemCount: chatListLenght + 1,
             itemBuilder: (context, index) {
-              bool isLastItem = index == chatNotifier.chatMessages.length - 1;
+              if (index == chatListLenght) return isLoading ? const TypingSpinKit() : const SizedBox.shrink();
               return TextWidget(
                 message: chatNotifier.chatMessages[index].message,
                 chatIndex: chatNotifier.chatMessages[index].index,
-                isLastItem: isLastItem,
               );
+              
             },
           ),
         ),

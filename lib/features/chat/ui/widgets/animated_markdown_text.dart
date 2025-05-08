@@ -1,3 +1,4 @@
+import 'package:chatgpt_clone/features/chat/ui/widgets/gpt_markdown_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
@@ -52,10 +53,8 @@ class _AnimatedGptMarkdownTextState extends State<AnimatedGptMarkdownText> {
 
   @override
   Widget build(BuildContext context) {
-    return GptMarkdown(
-      _visibleText.trim(),
-      style: TextStyles.font14WhiteRegular,
-      followLinkColor: true,
-    );
+    return GptMarkdownText(visibleText: _visibleText);
   }
 }
+
+

@@ -1,10 +1,10 @@
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/animated_markdown_text.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/gpt_markdown_text.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/message_action_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gpt_markdown/gpt_markdown.dart';
 
 class TextWidget extends StatelessWidget {
   const TextWidget({super.key, required this.message, required this.chatIndex, required this.shouldAnimate});
@@ -43,28 +43,8 @@ class TextWidget extends StatelessWidget {
                             fullText: message!.trim(),
                             charDelay: const Duration(milliseconds: 5),
                           )
-                        //   DefaultTextStyle(
-                        // style: TextStyles.font14WhiteRegular,
-                        // child: AnimatedTextKit(
-                        //   totalRepeatCount: 1,
-                        //         displayFullTextOnTap: true,
-                        //   isRepeatingAnimation: false,
-                        //   repeatForever: false,
-                        //   stopPauseOnTap: true,
-                        //   animatedTexts: [
-                        //           TypewriterAnimatedText(
-                        //             message!.trim(),
-                        //             cursor: '',
-                        //           ),
-                        //   ],
-                        // ),
-                        //     )
-                        : GptMarkdown(
-                            message!.trim(),
-                            style: TextStyles.font14WhiteRegular,
-                            // textScaler: TextScaler.noScaling,
+                        : GptMarkdownText(visibleText: message!
                           ),
-                   
                     if (message!.isNotEmpty) const MessageActionButtons(),
                   ] 
                   

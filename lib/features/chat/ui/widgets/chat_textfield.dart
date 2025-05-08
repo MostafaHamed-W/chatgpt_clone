@@ -62,6 +62,8 @@ class _ChatTextFieldState extends State<ChatTextField> {
                   Expanded(
                     child: TextField(
                       controller: chatController,
+                      minLines: 1,
+                      maxLines: 3,
                       cursorColor: Colors.blue,
                       style: TextStyles.font16WhiteRegular,
                       decoration: InputDecoration(

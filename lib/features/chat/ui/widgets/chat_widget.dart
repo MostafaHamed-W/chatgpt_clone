@@ -32,6 +32,7 @@ class ChatWidget extends StatelessWidget {
               return TextWidget(
                 message: chatNotifier.chatMessages[index].message,
                 chatIndex: chatNotifier.chatMessages[index].index,
+                shouldAnimate: chatListLenght - 1 == index,
               );
               
             },

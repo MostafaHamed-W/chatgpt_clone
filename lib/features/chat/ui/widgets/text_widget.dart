@@ -1,18 +1,19 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatgpt_clone/core/theming/colors.dart';
 import 'package:chatgpt_clone/core/theming/styles.dart';
+import 'package:chatgpt_clone/features/chat/ui/widgets/animated_markdown_text.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/message_action_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gpt_markdown/gpt_markdown.dart';
 
 class TextWidget extends StatelessWidget {
-  const TextWidget({super.key, required this.message, required this.chatIndex});
+  const TextWidget({super.key, required this.message, required this.chatIndex, required this.shouldAnimate});
   final String? message;
   final int chatIndex;
-
+  final bool shouldAnimate;
   @override
   Widget build(BuildContext context) {
-
+    final senderChatMargin = MediaQuery.of(context).size.width * 1 / 4;
     bool isSender = chatIndex == 0;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -22,6 +23,7 @@ class TextWidget extends StatelessWidget {
         children: [
           Flexible(
             child: Container(
+              margin: isSender ? EdgeInsets.only(left: senderChatMargin) : EdgeInsets.zero,
               padding: isSender ? EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h) : EdgeInsets.zero,
               decoration: BoxDecoration(
                 color: isSender ? ColorsManager.backgroundCard : Colors.transparent,
@@ -36,20 +38,36 @@ class TextWidget extends StatelessWidget {
                       style: TextStyles.font14WhiteRegular,
                     ),
                   ] else ...[
-                    DefaultTextStyle(
-                      style: TextStyles.font14WhiteRegular,
-                      child: AnimatedTextKit(
-                        totalRepeatCount: 1,
-                        isRepeatingAnimation: false,
-                        repeatForever: false,
-                        stopPauseOnTap: true,
-                        animatedTexts: [
-                          TypewriterAnimatedText(message!, cursor: ''),
-                        ],
-                      ),
-                    ),
+                    shouldAnimate
+                        ? AnimatedGptMarkdownText(
+                            fullText: message!.trim(),
+                            charDelay: const Duration(milliseconds: 5),
+                          )
+                        //   DefaultTextStyle(
+                        // style: TextStyles.font14WhiteRegular,
+                        // child: AnimatedTextKit(
+                        //   totalRepeatCount: 1,
+                        //         displayFullTextOnTap: true,
+                        //   isRepeatingAnimation: false,
+                        //   repeatForever: false,
+                        //   stopPauseOnTap: true,
+                        //   animatedTexts: [
+                        //           TypewriterAnimatedText(
+                        //             message!.trim(),
+                        //             cursor: '',
+                        //           ),
+                        //   ],
+                        // ),
+                        //     )
+                        : GptMarkdown(
+                            message!.trim(),
+                            style: TextStyles.font14WhiteRegular,
+                            // textScaler: TextScaler.noScaling,
+                          ),
+                   
                     if (message!.isNotEmpty) const MessageActionButtons(),
-                  ],
+                  ] 
+                  
                 ],
               ),
             ),

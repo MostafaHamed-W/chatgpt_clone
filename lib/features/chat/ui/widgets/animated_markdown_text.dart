@@ -1,7 +1,5 @@
 import 'package:chatgpt_clone/features/chat/ui/widgets/gpt_markdown_text.dart';
 import 'package:flutter/material.dart';
-import 'package:gpt_markdown/gpt_markdown.dart';
-import 'package:chatgpt_clone/core/theming/styles.dart';
 
 class AnimatedGptMarkdownText extends StatefulWidget {
   final String fullText;

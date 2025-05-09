@@ -40,8 +40,12 @@ class _ChatTextFieldState extends State<ChatTextField> {
           final msg = chatController.text;
           final selectedModel = modelProvider.selectedModel!;
 
+          // To clear textfield after send message
           chatProvider.addUserMessage(userMessage: msg);
           chatController.clear();
+          
+          // To dispose keyboard after send message
+          FocusManager.instance.primaryFocus?.unfocus();
 
           await chatProvider.sendMessage(chatModel: selectedModel, chatMessage: msg);
         }

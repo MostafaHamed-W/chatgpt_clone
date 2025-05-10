@@ -36,8 +36,12 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['error']['message']);
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403 || statusCode == 429) {
+      if (response is Map && response['error']['message'] != null) {
+        return ServerFailure(response['error']["message"]);
+      } else {
+        return ServerFailure('Unauthorized');
+      }
     } else if (statusCode == 404) {
       return ServerFailure('Your request not found, Please try later!');
     } else if (statusCode == 500) {

@@ -10,6 +10,7 @@ import 'package:chatgpt_clone/features/chat/data/models/completions/completion_r
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+
 class ChatRepo {
   final ApiService _apiService;
   ChatRepo(this._apiService);

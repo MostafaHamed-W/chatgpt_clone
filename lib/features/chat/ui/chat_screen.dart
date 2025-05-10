@@ -45,7 +45,7 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisSize: MainAxisSize.max,
           children: [
             ChatWidget(scrollController: _scrollController),
-            const ChatTextField(),
+            ChatTextField(scrollController: _scrollController),
           ],
         ),
       ),

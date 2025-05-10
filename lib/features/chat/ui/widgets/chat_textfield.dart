@@ -1,3 +1,4 @@
+import 'package:chatgpt_clone/core/widgets/custom_toast.dart';
 import 'package:chatgpt_clone/features/chat/logic/chat_model_provider.dart';
 import 'package:chatgpt_clone/features/chat/logic/chat_provider.dart';
 import 'package:chatgpt_clone/features/chat/ui/widgets/rounded_icon_button.dart';
@@ -13,7 +14,9 @@ import 'package:provider/provider.dart';
 class ChatTextField extends StatefulWidget {
   const ChatTextField({
     super.key,
+    required this.scrollController,
   });
+  final ScrollController scrollController;
 
   @override
   State<ChatTextField> createState() => _ChatTextFieldState();
@@ -37,13 +40,41 @@ class _ChatTextFieldState extends State<ChatTextField> {
         final chatProvider = context.read<ChatProvider>();
 
         void sendMessage() async {
+
+          // Prevent sending empty message
+          if (chatController.text.isEmpty) {
+            CustomToast.instance.showDefaultToast(
+              context,
+              message: 'Please enter a valid message',
+            );
+            return;
+          }
+
+          // Select Ai model
           final msg = chatController.text;
           final selectedModel = modelProvider.selectedModel!;
 
+          // To clear textfield after send message
           chatProvider.addUserMessage(userMessage: msg);
           chatController.clear();
 
-          await chatProvider.sendMessage(chatModel: selectedModel, chatMessage: msg);
+          // To dispose keyboard after send message
+          FocusManager.instance.primaryFocus?.unfocus();
+
+
+          //TODO: Implment new scroll on send & animate method
+          // Animate to max scroll intent
+          // widget.scrollController.animateTo(
+          //   widget.scrollController.position.maxScrollExtent,
+          //   duration: const Duration(seconds: 1),
+          //   curve: Curves.easeOut,
+          // );
+
+          await chatProvider.sendMessage(
+            chatModel: selectedModel,
+            chatMessage: msg,
+            context: context,
+          );
         }
 
         return Container(

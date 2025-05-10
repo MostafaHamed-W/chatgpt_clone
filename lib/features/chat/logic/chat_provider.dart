@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:chatgpt_clone/core/widgets/custom_toast.dart';
 import 'package:chatgpt_clone/features/chat/data/models/chat_message.dart/chat_message.dart';
 import 'package:chatgpt_clone/features/chat/data/models/chat_model/chat_model.dart';
 import 'package:chatgpt_clone/features/chat/data/repos/chat_repo.dart';
@@ -23,6 +23,7 @@ class ChatProvider extends ChangeNotifier {
   Future<void> sendMessage({
     required ChatModel chatModel,
     required String chatMessage,
+    required BuildContext context,
   }) async {
     _isLoading = true;
     notifyListeners();
@@ -30,13 +31,14 @@ class ChatProvider extends ChangeNotifier {
       chatModel: chatModel,
       chatMessage: chatMessage,
     );
-    
-    // Simulate backend loading time on testing 
+
+    // Simulate backend loading time on testing
     // await Future.delayed(const Duration(seconds: 3));
-    
+
     result.fold(
       (failure) {
         log(failure.errMessage);
+        CustomToast.instance.showDefaultToast(context, message: failure.errMessage);
         _isLoading = false;
         notifyListeners();
       },
